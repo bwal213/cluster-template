@@ -1,5 +1,6 @@
 #!/bin/bash
 set -x
+sudo yum -y update
 sudo yum -y group install "Development Tools"
 sudo wget https://download.open-mpi.org/release/open-mpi/v3.1/openmpi-3.1.2.tar.gz
 sudo tar xzf openmpi-3.1.2.tar.gz
