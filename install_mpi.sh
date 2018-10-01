@@ -13,3 +13,4 @@ echo "export LD_LIBRARY_PATH='$LD_LIBRARY_PATH:/opt/openmpi/3.1.2/lib/'" >> /use
 cd ..
 sudo rm -Rf openmpi-3.1.2
 sudo rm -Rf openmpi-3.1.2.tar.gz
+source /users/BW840606/.bashrc
