@@ -62,9 +62,10 @@ for i in range(6):
   
   #temporary fix but should correct the ssh issues.
   for n in range (6):
-    sshIPCommand = "ssh-keyscan -H 192.168.1." + str(n + 1) + " >> /users/BW840606/.ssh/known_hosts"
+    sshIPCommand = "su BW840606 -c 'ssh-keyscan -H 192.168.1." + str(n + 1) + " >> /users/BW840606/.ssh/known_hosts'"
     node.addService(pg.Execute(shell="sh", command=sshIPCommand))
-    node.addService(pg.Execute(shell="sh", command="ssh 192.168.1." + str(n + 1)))
+    sshCommand = "su BW840606 -c 'ssh 192.168.1." + str(n + 1) + "'"
+    node.addService(pg.Execute(shell="sh", command=sshCommand))
     node.addService(pg.Execute(shell="sh", command="exit"))
   
   node.addService(pg.Execute(shell="sh", command="sudo su BW840606 -c 'cp /local/repository/source/* /users/BW840606'"))
