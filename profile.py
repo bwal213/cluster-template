@@ -60,13 +60,10 @@ for i in range(6):
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_mpi.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_mpi.sh"))
   
-  #temporary fix but should correct the ssh issues.
-  for n in range (6):
-    sshIPCommand = "su BW840606 -c 'ssh-keyscan -H 192.168.1." + str(n + 1) + " >> /users/BW840606/.ssh/known_hosts'"
-    node.addService(pg.Execute(shell="sh", command=sshIPCommand))
-    sshCommand = "su BW840606 -c 'ssh 192.168.1." + str(n + 1) + "'"
-    node.addService(pg.Execute(shell="sh", command=sshCommand))
-    node.addService(pg.Execute(shell="sh", command="exit"))
+  node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/ssh_setup.sh"))
+  node.addService(pg.Execute(shell="sh", command="/local/repository/ssh_setup.sh"))
+  node.addService(pg.Execute(shell="sh", command="sudo -H -u BW840606 bash -c '/local/repository/ssh_setup.sh'"))
+  node.addService(pg.Execute(shell="sh", command="echo \"DONE\" >> /users/BW840606/done.txt"))
   
   node.addService(pg.Execute(shell="sh", command="sudo su BW840606 -c 'cp /local/repository/source/* /users/BW840606'"))
   
