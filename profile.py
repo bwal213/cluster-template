@@ -65,9 +65,9 @@ for i in range(6):
   #node.addService(pg.Execute(shell="sh", command="sudo -H -u BW840606 bash -c '/local/repository/ssh_setup.sh'"))
   
   for i in range(6):
-    keygenCommand = "sudo -H -u BW840606 bash -c 'ssh-keyscan -H " + prefixForIP + str(i) + " >> ~/.ssh/known_hosts'"
+    keygenCommand = "sudo -H -u BW840606 bash -c 'ssh-keyscan -H " + prefixForIP + str(i + 1) + " >> ~/.ssh/known_hosts'"
     node.addService(pg.Execute(shell="sh", command=keygenCommand))
-    sshCommand = "sudo -H -u BW840606 bash -c 'ssh " + prefixForIP + str(i) + " -f 'sleep 5''"
+    sshCommand = "sudo -H -u BW840606 bash -c 'ssh " + prefixForIP + str(i + 1) + " -f 'sleep 5''"
     node.addService(pg.Execute(shell="sh", command=sshCommand))
   
   node.addService(pg.Execute(shell="sh", command="sudo su BW840606 -c 'cp /local/repository/source/* /users/BW840606'"))
