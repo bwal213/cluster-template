@@ -60,6 +60,13 @@ for i in range(6):
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_mpi.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_mpi.sh"))
   
+  #temporary fix but should correct the ssh issues.
+  for i in range (6):
+    sshIPCommand = "ssh-keyscan -H 192.168.1." + str(i + 1) + " >> ~/.ssh/known_hosts"
+    node.addService(pg.Execute(shell="sh", command=sshIPCommand))
+    node.addService(pg.Execute(shell="sh", command="ssh 192.168.1." + str(i + 1)))
+    node.addService(pg.Execute(shell="sh", command="exit"))
+  
   node.addService(pg.Execute(shell="sh", command="sudo su BW840606 -c 'cp /local/repository/source/* /users/BW840606'"))
   
 # Print the RSpec to the enclosing page.
