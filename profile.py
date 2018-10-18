@@ -1,8 +1,3 @@
-"""This is a test to see if I can create multiple nodes and assign all their information with a loop.
-Instructions:
-This is now an experimental profile, instatiation may result in unknown consequences. Check source for a better understanding.
-"""
-
 import geni.portal as portal
 import geni.rspec.pg as pg
 import geni.rspec.igext
